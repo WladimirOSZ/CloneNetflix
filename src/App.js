@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
-import Tmdb from './Tmdb';
-
+import React, { useState, useEffect } from 'react'
+import './App.css'
+import Tmdb from './Tmdb'
+import Header from './components/Header'
+import FeaturedMovie from './components/Featured/'
 export default () => {
   const [movieList, setMovieList] = useState([]);
   const [featuredData, setFeaturedData] = useState(null);
+  const [blackHeader, setBlackHeader] = useState(false)
 
   useEffect(()=> {
     const loadAll = async () => {
@@ -24,8 +26,12 @@ export default () => {
   
 
   return (
-    <div className='page'>
+    <div className="page">
+        <Header black={blackHeader} />
 
+        {featuredData && 
+          <FeaturedMovie item={featuredData}/>
+        }
     </div>
   );
 }
